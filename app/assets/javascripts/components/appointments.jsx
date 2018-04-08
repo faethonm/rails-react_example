@@ -1,13 +1,17 @@
-var Appointments = createReactClass({
-  getInitialState: function(){
-    return {
+class Appointments extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
       appointments: this.props.appointments,
       title: 'Fuck',
       apt_time: 'Tomorrow at 9am'
     }
-  },
-  addNewAppointment: function(appointment){
-    var appointments = React.addons.update(
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleUserInput = this.handleUserInput.bind(this);
+  }
+
+  addNewAppointment(appointment){
+    const appointments = React.addons.update(
       this.state.appointments, {
         $push: [appointment]
       })
@@ -16,22 +20,24 @@ var Appointments = createReactClass({
         return new Date(a.apt_time) - new Date(b.apt_time)
       })
     })
-  },
-  handleFormSubmit: function() {
-    var appointment = {
+  }
+  handleFormSubmit() {
+    const appointment = {
       title: this.state.title,
       apt_time: this.state.apt_time
     }
     $.post('/appointments',
       {appointment: appointment})
-    .done(function(data) {
+    .done((data) => {
       this.addNewAppointment(data)
-    }.bind(this))
-  },
-  handleUserInput: function(obj) {
+    })
+  }
+
+  handleUserInput(obj) {
     this.setState(obj)
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <div>
         <AppointmentForm
@@ -43,4 +49,4 @@ var Appointments = createReactClass({
       </div>
     )
   }
-});
+};

@@ -1,10 +1,7 @@
-var Appointment = createReactClass({
-  render: function() {
-    return (
-      <div className="appointment">
-        <h3> {this.props.appointment.title} </h3>
-        <p> {formatDate(this.props.appointment.apt_time)} </p>
-      </div>
-    )
-  }
-});
+// This can be a stateless component
+
+const Appointment = ({appointment}) =>
+  <div className="appointment">
+    <h3> {appointment.title} </h3>
+    <p> {formatDate(appointment.apt_time)} </p>
+  </div>
