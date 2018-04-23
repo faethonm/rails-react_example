@@ -1,4 +1,6 @@
-class AppointmentForm extends React.Component {
+import React from 'react';
+import Datetime from 'react-datetime';
+export default class AppointmentForm extends React.Component {
   constructor(props){
     super(props);
     this.handleChange = this.handleChange.bind(this)
@@ -7,7 +9,7 @@ class AppointmentForm extends React.Component {
   }
   handleChange(e){
     const name = e.target.name;
-    obj = {}
+    const obj = {}
     obj[name] = e.target.value
     this.props.onUserInput(obj)
   }
@@ -19,7 +21,7 @@ class AppointmentForm extends React.Component {
 
   setAptTime(e) {
     const name = 'apt_time'
-    obj ={}
+    const obj ={}
     if (obj[name] = e.toDate()) {
       this.props.onUserInput(obj)
     }

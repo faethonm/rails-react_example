@@ -1,4 +1,9 @@
-class Appointments extends React.Component{
+import React from 'react';
+import AppointmentForm from './AppointmentForm';
+import { AppointmentsList } from './AppointmentsList';
+
+import update from 'immutability-helper'
+export default class Appointments extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -11,7 +16,7 @@ class Appointments extends React.Component{
   }
 
   addNewAppointment(appointment){
-    const appointments = React.addons.update(
+    const appointments = update(
       this.state.appointments, {
         $push: [appointment]
       })
