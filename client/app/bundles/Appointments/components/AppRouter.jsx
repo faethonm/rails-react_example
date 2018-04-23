@@ -10,10 +10,7 @@ export default (props) => {
     <Router>
       <div>
         <Route path="/" component= {AppHeader} />
-        <Route exact path="/" render={routerProps => (
-          <Appointments {...routerProps} appointments={props.appointments} />
-        )}
-        />
+        <Route exact path="/" component={Appointments}/>
         <Route exact path="/appointments/:id" component={Appointment} />
         <Route path="/appointments/:id/edit" component={AppointmentForm} />
       </div>
