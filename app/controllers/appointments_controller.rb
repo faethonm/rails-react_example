@@ -6,7 +6,8 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
-    if @appointment.save!
+    #remember never save! validation wont work
+    if @appointment.save
       render json: @appointment
     else
       render json: @appointment.errors, status: :unprocesable_entity
