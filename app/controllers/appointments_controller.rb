@@ -1,7 +1,16 @@
 class AppointmentsController < ApplicationController
+  def show
+    @appointment = Appointment.find(params[:id])
+    render json: @appointment
+  end
+
   def index
     @appointments = Appointment.order('apt_time ASC')
     @appointment = Appointment.new
+    respond_to do |format| 
+      format.html
+      format.json {render json: @appointments}
+    end
   end
 
   def create
@@ -21,5 +30,9 @@ class AppointmentsController < ApplicationController
       :title,
       :apt_time
     )
+  end
+
+  def set_appointment
+    @appointment = Appointment.find(params[:id])
   end
 end

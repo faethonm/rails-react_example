@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Appointment } from './Appointment'
+import Appointment from './Appointment'
 
 
 export const AppointmentsList = ({appointments}) =>

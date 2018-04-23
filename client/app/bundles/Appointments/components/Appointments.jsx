@@ -6,6 +6,14 @@ import { FormErrors } from './FormErrors';
 import update from 'immutability-helper'
 
 export default class Appointments extends React.Component{
+  static propTypes = {
+    appointments: PropTypes.array.isRequired
+  }
+
+  static defaultProps = {
+    appointments: []
+  }
+
   constructor(props){
     super(props);
     this.state = {
@@ -17,6 +25,20 @@ export default class Appointments extends React.Component{
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleUserInput = this.handleUserInput.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.match){
+      $.ajax({
+        type: 'GET',
+        url: '/appointments',
+        dataType: "JSON"
+      }).done((data) => {
+        this.setState({
+          appointments: data
+        })
+      })
+    }
   }
 
   addNewAppointment(appointment){
@@ -103,7 +125,3 @@ export default class Appointments extends React.Component{
     )
   }
 };
-
-Appointments.propTypes = {
-  appointments: PropTypes.array.isRequired,
-}
